@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 
 var cur_x = 0
 var ref = preload("res://scenes/ref.tscn")
-var y1 = -111.0
-var y2 = 210.0
+var y1 = -140.0
+var y2 = 164
 
 var gap = 80
 
@@ -40,29 +40,42 @@ var gap = 80
 # 150/150/148 -75
 
 func spawn_obstacle():
+	var temp_size = 150
+	
 	var temp = ref.instantiate()
 	temp.position.x = cur_x
 	temp.position.y = y1
-	#print(temp.game)
-	temp.game = self
-	#print(temp.game)
-	var temp_size = 150
-	#print(-100 + (200-150)/2 )
 	
+	temp.get_node("col").shape = temp.get_node("col").shape.duplicate()
+	temp.get_node("ref").get_node("col").shape = temp.get_node("ref").get_node("col").shape.duplicate()
+	
+	temp.position.y = y1-((200-temp_size)/2)
+	temp.get_node("panel").position.y = -100 + (200-temp_size)/2
 	temp.get_node("panel").size.y = temp_size
-	temp.get_node("panel").position.y = -100 + (200-150)/2 
 	temp.get_node("col").shape.size.y = temp_size
 	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
 	
+	$map/obstacles.add_child(temp)
+	
+	temp = ref.instantiate()
+	temp.position.x = cur_x
+	temp.position.y = y2
+	temp.game = self
+	
+	temp.get_node("col").shape = temp.get_node("col").shape.duplicate()
+	temp.get_node("ref").get_node("col").shape = temp.get_node("ref").get_node("col").shape.duplicate()
+	
+	temp.position.y = y2-(200-temp_size)
+	temp_size = 464-gap-temp_size
+	temp.get_node("panel").size.y = temp_size
+	temp.get_node("panel").position.y = -100 + (200-temp_size)/2 
+	temp.get_node("col").shape.size.y = temp_size
+	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
+	
+	# 200/164
+	# 
 	
 	$map/obstacles.add_child(temp)
-	#
-	#temp = ref.instantiate()
-	#temp.position.x = cur_x
-	#temp.position.y = y2
-	#temp.game = self
-	#$map/obstacles.add_child(temp)
-	
 	cur_x += 300
 
 func _on_boundaries_body_entered(body: Node2D) -> void:
