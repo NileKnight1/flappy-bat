@@ -2,9 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://4vjxjsmvw54v" path="res://scenes/bat.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://ubl3nf231uqf" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://64esjhfspsl7" path="res://scripts/ref.gd" id="2_lnu2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlew8"]
 bg_color = Color(0.05164527, 0.035177767, 0.26976654, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4568"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bekt7"]
+size = Vector2(50, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlew8"]
+size = Vector2(48, 200)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqjtg"]
 bg_color = Color(0.94, 0.94, 0.94, 0.29411766)
@@ -30,6 +40,26 @@ offset_bottom = 345.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vlew8")
 
 [node name="obstacles" type="Node2D" parent="map" unique_id=375510223]
+
+[node name="ref" type="Area2D" parent="map/obstacles" unique_id=665143006]
+position = Vector2(7, 124)
+script = ExtResource("2_lnu2h")
+
+[node name="panel" type="Panel" parent="map/obstacles/ref" unique_id=265598283]
+offset_left = -25.0
+offset_top = -100.0
+offset_right = 25.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4568")
+
+[node name="col" type="CollisionShape2D" parent="map/obstacles/ref" unique_id=1561078569]
+shape = SubResource("RectangleShape2D_bekt7")
+
+[node name="ref" type="StaticBody2D" parent="map/obstacles/ref" unique_id=1928727181]
+
+[node name="col" type="CollisionShape2D" parent="map/obstacles/ref/ref" unique_id=1343354710]
+shape = SubResource("RectangleShape2D_vlew8")
+debug_color = Color(0, 0.45075482, 0.9883931, 0.41960785)
 
 [node name="boundaries" type="Node2D" parent="map" unique_id=1041325356]
 position = Vector2(0, 113)
@@ -86,4 +116,5 @@ position = Vector2(0, -3)
 [node name="player" parent="." unique_id=2128622806 instance=ExtResource("1_uwrxv")]
 position = Vector2(-429, -3)
 
+[connection signal="body_entered" from="map/obstacles/ref" to="map/obstacles/ref" method="_on_ref_body_entered"]
 [connection signal="body_entered" from="map/boundaries/Area2D" to="." method="_on_boundaries_body_entered"]

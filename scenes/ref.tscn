@@ -23,11 +23,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_k4568")
 
 [node name="col" type="CollisionShape2D" parent="." unique_id=1561078569]
 shape = SubResource("RectangleShape2D_bekt7")
+debug_color = Color(0.36166668, 0.62, 0, 0.1882353)
 
 [node name="ref" type="StaticBody2D" parent="." unique_id=1928727181]
 
 [node name="col" type="CollisionShape2D" parent="ref" unique_id=1343354710]
 shape = SubResource("RectangleShape2D_vlew8")
-debug_color = Color(0, 0.45075482, 0.9883931, 0.41960785)
+debug_color = Color(0.82, 0.2542, 0.31077996, 0.31764707)
 
 [connection signal="body_entered" from="." to="." method="_on_ref_body_entered"]

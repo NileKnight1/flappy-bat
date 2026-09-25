@@ -9,9 +9,9 @@ func _ready() -> void:
 func start_game():
 	game_running = 1
 	spawn_obstacle()
-	spawn_obstacle()
-	spawn_obstacle()
-	spawn_obstacle()
+	#spawn_obstacle()
+	#spawn_obstacle()
+	#spawn_obstacle()
 
 var game_running = 0
 
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 var cur_x = 0
 var ref = preload("res://scenes/ref.tscn")
 var y1 = -140.0
-var y2 = 164
+var y2 = 124
 
 var gap = 80
 
@@ -40,7 +40,8 @@ var gap = 80
 # 150/150/148 -75
 
 func spawn_obstacle():
-	var temp_size = 150
+	var temp_size = randi_range(100,200)
+	#var temp_size = 234
 	
 	var temp = ref.instantiate()
 	temp.position.x = cur_x
@@ -59,21 +60,25 @@ func spawn_obstacle():
 	
 	temp = ref.instantiate()
 	temp.position.x = cur_x
-	temp.position.y = y2
 	temp.game = self
 	
 	temp.get_node("col").shape = temp.get_node("col").shape.duplicate()
 	temp.get_node("ref").get_node("col").shape = temp.get_node("ref").get_node("col").shape.duplicate()
 	
-	temp.position.y = y2-(200-temp_size)
+	
+	
 	temp_size = 464-gap-temp_size
+	#print(temp_size)
+	#print(y2+(200-temp_size)/2)
+	temp.position.y = (y2+(200-temp_size)/2)
 	temp.get_node("panel").size.y = temp_size
 	temp.get_node("panel").position.y = -100 + (200-temp_size)/2 
 	temp.get_node("col").shape.size.y = temp_size
 	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
 	
-	# 200/164
-	# 
+	# 250/74
+	# 200/124
+	# 150/150
 	
 	$map/obstacles.add_child(temp)
 	cur_x += 300
