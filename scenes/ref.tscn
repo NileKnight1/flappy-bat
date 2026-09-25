@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cw6v87nut11ki"]
+
+[ext_resource type="Script" uid="uid://64esjhfspsl7" path="res://scripts/ref.gd" id="1_m27a1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4568"]
+bg_color = Color(0.16549128, 0.31319985, 0.123944364, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlew8"]
+size = Vector2(44, 252)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bekt7"]
+size = Vector2(46, 256)
+
+[node name="ref" type="StaticBody2D" unique_id=357172418]
+script = ExtResource("1_m27a1")
+
+[node name="Panel" type="Panel" parent="." unique_id=265598283]
+offset_left = -25.0
+offset_top = -129.0
+offset_right = 25.0
+offset_bottom = 129.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4568")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1343354710]
+shape = SubResource("RectangleShape2D_vlew8")
+
+[node name="ref" type="Area2D" parent="." unique_id=983626071]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ref" unique_id=1561078569]
+shape = SubResource("RectangleShape2D_bekt7")
+
+[connection signal="body_entered" from="ref" to="." method="_on_ref_body_entered"]
