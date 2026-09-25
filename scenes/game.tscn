@@ -85,5 +85,16 @@ rotation = 1.5707966
 shape = SubResource("SegmentShape2D_yqjtg")
 
 [node name="difficulty" type="Timer" parent="." unique_id=1849449303]
+wait_time = 5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=991589040]
+
+[node name="points" type="Label" parent="CanvasLayer" unique_id=1955734069]
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 123.0
+offset_bottom = 48.0
+text = "Distance: 0m"
 
 [connection signal="body_entered" from="boundaries/Area2D" to="." method="_on_boundaries_body_entered"]
+[connection signal="timeout" from="difficulty" to="." method="_on_difficulty_timeout"]

@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bnqmcka08hcb7" path="res://scripts/bat.gd" id="1_uhqni"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlew8"]
-size = Vector2(38, 36)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlew8"]
 bg_color = Color(0.32810894, 0.096215986, 0.50163054, 1)
 border_width_left = 1
@@ -57,12 +54,27 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhqni"]
+bg_color = Color(0.33984843, 0.09990848, 0.51113385, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fn3r"]
+bg_color = Color(0.34117648, 0.09803922, 0.50980395, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhqni"]
+radius = 29.0
+
 [node name="bat" type="CharacterBody2D" unique_id=2128622806]
 script = ExtResource("1_uhqni")
-
-[node name="col" type="CollisionShape2D" parent="." unique_id=2070697087]
-visible = false
-shape = SubResource("RectangleShape2D_vlew8")
 
 [node name="Panel" type="Panel" parent="." unique_id=1176100876]
 visible = false
@@ -103,24 +115,9 @@ scale = Vector2(1, -1)
 color = Color(0.32941177, 0.09411765, 0.5019608, 1)
 polygon = PackedVector2Array(28, -9, 47, -28, 79, 8, 61, 8, 50, 19, 28, 11)
 
-[node name="Panel5" type="Panel" parent="sprite" unique_id=2126108815]
-offset_left = -1.0000019
-offset_top = -23.0
-offset_right = 17.999998
-offset_bottom = 3.8103447
-rotation = 2.3561945
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ss3tx")
+[node name="ear1" type="Node2D" parent="sprite" unique_id=1719606629]
 
-[node name="Panel7" type="Panel" parent="sprite" unique_id=624010286]
-offset_top = -17.0
-offset_right = 12.331499
-offset_bottom = 9.810345
-rotation = 2.3561945
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lv0ya")
-
-[node name="Panel6" type="Panel" parent="sprite" unique_id=1282202502]
+[node name="Panel6" type="Panel" parent="sprite/ear1" unique_id=1282202502]
 offset_left = 0.9999981
 offset_top = -22.999998
 offset_right = 19.999996
@@ -130,7 +127,7 @@ scale = Vector2(-1, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ss3tx")
 
-[node name="Panel8" type="Panel" parent="sprite" unique_id=748084234]
+[node name="Panel8" type="Panel" parent="sprite/ear1" unique_id=748084234]
 offset_top = -17.0
 offset_right = 12.331497
 offset_bottom = 9.810345
@@ -139,11 +136,33 @@ scale = Vector2(1, -1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lv0ya")
 
-[node name="Panel9" type="Panel" parent="sprite" unique_id=2137064230]
-offset_left = -11.0
-offset_top = 7.0
-offset_right = 11.0
-offset_bottom = 42.0
+[node name="ear2" type="Node2D" parent="sprite" unique_id=564273622]
+
+[node name="Panel5" type="Panel" parent="sprite/ear2" unique_id=2126108815]
+offset_left = -1.0000019
+offset_top = -23.0
+offset_right = 17.999998
+offset_bottom = 3.8103447
+rotation = 2.3561945
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ss3tx")
+
+[node name="Panel7" type="Panel" parent="sprite/ear2" unique_id=624010286]
+offset_top = -17.0
+offset_right = 12.331499
+offset_bottom = 9.810345
+rotation = 2.3561945
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lv0ya")
+
+[node name="tail" type="Node2D" parent="sprite" unique_id=447190818]
+position = Vector2(-2, -4)
+
+[node name="Panel9" type="Panel" parent="sprite/tail" unique_id=2137064230]
+offset_left = -9.332134
+offset_top = 7.0647907
+offset_right = 12.667866
+offset_bottom = 42.06479
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cnldk")
 
@@ -170,3 +189,31 @@ offset_right = 15.0
 offset_bottom = -3.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_48wkk")
+
+[node name="eyes" type="Node2D" parent="sprite" unique_id=1430631423]
+visible = false
+
+[node name="Panel3" type="Panel" parent="sprite/eyes" unique_id=1541952646]
+offset_left = -15.0
+offset_top = -11.0
+offset_right = -7.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uhqni")
+
+[node name="Panel4" type="Panel" parent="sprite/eyes" unique_id=516862140]
+offset_left = 7.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5fn3r")
+
+[node name="col" type="CollisionShape2D" parent="." unique_id=2070697087]
+shape = SubResource("CircleShape2D_uhqni")
+
+[node name="eyes" type="Timer" parent="." unique_id=407985895]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="eyes" to="." method="_on_eyes_timeout"]

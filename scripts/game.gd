@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func start_game():
 	game_running = 1
+	$difficulty.start()
 	spawn_obstacle()
 	#spawn_obstacle()
 	#spawn_obstacle()
@@ -21,7 +22,7 @@ var obstacles_count = 0
 func _process(delta: float) -> void:
 	if !game_running: return
 	obstacles_count = $map/obstacles.get_child_count()
-	$map/obstacles.position.x -= 5
+	$map/obstacles.position.x -= game_speed
 	
 	while obstacles_count < 20:
 		obstacles_count = $map/obstacles.get_child_count()
@@ -34,8 +35,10 @@ var ref = preload("res://scenes/ref.tscn")
 var y1 = -140.0
 var y2 = 124
 
-var gap = 150
-var cur_x_diff = 700
+var gap = 100
+var cur_x_diff = 450
+var game_speed = 10
+
 
 # 200/200/198/ -100
 # 150/150/148 -75
@@ -95,8 +98,23 @@ func kill():
 	$player.get_node("col").set_deferred("disabled", 1)
 	await get_tree().create_timer(0.01).timeout
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
-	
 
 
 func _on_obstacles_area_body_entered(body: Node2D) -> void:
 	print(body)
+
+func _on_difficulty_timeout() -> void:
+	return
+	if game_speed < 10:
+		game_speed += 1
+	if gap > 40:
+		gap -= 5
+	if cur_x_diff > 300:
+		cur_x_diff -= 50
+
+var points = 0
+func add_point():
+	points += 1
+	$CanvasLayer/points.text = "Distance: " + str(points/2) + "m"
+	print(points)
+	#print("points")
