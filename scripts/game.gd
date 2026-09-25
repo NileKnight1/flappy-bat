@@ -10,24 +10,32 @@ func start_game():
 	game_running = 1
 	$difficulty.start()
 	spawn_obstacle()
-	#spawn_obstacle()
-	#spawn_obstacle()
-	#spawn_obstacle()
+	spawn_obstacle()
+	spawn_obstacle()
+	spawn_obstacle()
 
 var game_running = 0
 
 var obstacles_count = 0
+var coins_count = 0
 
 
 func _process(delta: float) -> void:
 	if !game_running: return
 	obstacles_count = $map/obstacles.get_child_count()
+	coins_count = $map/coins.get_child_count()
+	
 	$map/obstacles.position.x -= game_speed
+	$map/coins.position.x -= game_speed
+	
 	
 	while obstacles_count < 20:
 		obstacles_count = $map/obstacles.get_child_count()
 		spawn_obstacle()
 	
+	#while coins_count < 20:
+		#coins_count = $map/coins.get_child_count()
+		#spawn_coins()
 
 
 var cur_x = 0
@@ -35,15 +43,11 @@ var ref = preload("res://scenes/ref.tscn")
 var y1 = -140.0
 var y2 = 124
 
-var gap = 100
-var cur_x_diff = 450
-var game_speed = 10
-
-
 # 200/200/198/ -100
 # 150/150/148 -75
 
 func spawn_obstacle():
+	print("spawned")
 	var temp_size = randi_range(100,460-gap)
 	#var temp_size = 460-gap
 	
@@ -80,6 +84,10 @@ func spawn_obstacle():
 	temp.get_node("col").shape.size.y = temp_size
 	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
 	
+	spawn_coins()
+	spawn_coins()
+	spawn_coins()
+	
 	$map/obstacles.add_child(temp)
 	# 250/74
 	# 200/124
@@ -87,13 +95,22 @@ func spawn_obstacle():
 	
 	cur_x += cur_x_diff
 
+func spawn_coins():
+	var temp = $map/coin.duplicate()
+	temp.position.y = randi_range(-215, 211)
+	temp.position.x = randi_range(cur_x+250,cur_x-250)
+	
+	
+	$map/coins.add_child(temp)
+	
+
 func _on_boundaries_body_entered(body: Node2D) -> void:
 	#print(body)
 	if body == $player:
 		kill()
 
 func kill():
-	#game_running = 0
+	game_running = 0
 	print("dead")
 	$player.get_node("col").set_deferred("disabled", 1)
 	await get_tree().create_timer(0.01).timeout
@@ -103,18 +120,29 @@ func kill():
 func _on_obstacles_area_body_entered(body: Node2D) -> void:
 	print(body)
 
+
+var gap = 200
+var cur_x_diff = 700
+var game_speed = 5
+
 func _on_difficulty_timeout() -> void:
 	return
 	if game_speed < 10:
-		game_speed += 1
-	if gap > 40:
-		gap -= 5
-	if cur_x_diff > 300:
-		cur_x_diff -= 50
+		game_speed += 0.5
+	if gap > 100:
+		gap -= 10
+	if cur_x_diff > 450:
+		cur_x_diff -= 25
 
 var points = 0
+var coins = 0
+
 func add_point():
 	points += 1
 	$CanvasLayer/points.text = "Distance: " + str(points/2) + "m"
 	print(points)
 	#print("points")
+func add_coin():
+	coins += 1
+	$CanvasLayer/coins.text = "Coins: " + str(coins)
+	print(points)
