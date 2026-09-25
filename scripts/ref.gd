@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 
 func _ready() -> void:
@@ -11,6 +11,8 @@ func _process(delta: float) -> void:
 
 var game
 func _on_ref_body_entered(body: Node2D) -> void:
+	#print(body)
 	if body.name == "player":
 		game.kill()
-		
+	if body.name == "free":
+		self.queue_free()

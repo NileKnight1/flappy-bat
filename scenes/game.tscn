@@ -11,6 +11,10 @@ bg_color = Color(0.9372358, 0.93909746, 0.9372324, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8jhjc"]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yqjtg"]
+a = Vector2(-172, 3.000061)
+b = Vector2(51.000004, 4)
+
 [node name="game" type="Node2D" unique_id=1468201715]
 script = ExtResource("1_yqjtg")
 
@@ -25,6 +29,8 @@ offset_right = 661.0
 offset_bottom = 345.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vlew8")
 
+[node name="obstacles" type="Node2D" parent="map" unique_id=375510223]
+
 [node name="boundaries" type="Node2D" parent="map" unique_id=1041325356]
 position = Vector2(0, 113)
 
@@ -35,6 +41,13 @@ offset_right = 661.0
 offset_bottom = -353.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
 
+[node name="ground2" type="Panel" parent="map/boundaries" unique_id=179659455]
+offset_left = -730.0
+offset_top = 111.0
+offset_right = 661.0
+offset_bottom = 206.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="map/boundaries" unique_id=673053264]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/boundaries/StaticBody2D" unique_id=713542070]
@@ -43,7 +56,7 @@ rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_8jhjc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="map/boundaries/StaticBody2D" unique_id=672302870]
-position = Vector2(0, 207)
+position = Vector2(0, 113)
 shape = SubResource("WorldBoundaryShape2D_8jhjc")
 
 [node name="Area2D" type="Area2D" parent="map/boundaries" unique_id=441474376]
@@ -54,24 +67,21 @@ rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_8jhjc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="map/boundaries/Area2D" unique_id=486392097]
-position = Vector2(0, 205)
+position = Vector2(0, 111)
 shape = SubResource("WorldBoundaryShape2D_8jhjc")
 
-[node name="obstacles_area" type="Area2D" parent="map/boundaries" unique_id=1559556884]
-position = Vector2(-152, 0)
+[node name="free" type="StaticBody2D" parent="map/boundaries" unique_id=1582998418]
+position = Vector2(-116, 44)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="map/boundaries/obstacles_area" unique_id=1456903032]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="map/boundaries/free" unique_id=1456903032]
 position = Vector2(-731, -105)
 rotation = 1.5707966
-shape = SubResource("WorldBoundaryShape2D_8jhjc")
+shape = SubResource("SegmentShape2D_yqjtg")
 
-[node name="obstacles" type="Node2D" parent="map" unique_id=375510223]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1557071707]
+[node name="cam" type="Camera2D" parent="." unique_id=1557071707]
 position = Vector2(0, -3)
 
 [node name="player" parent="." unique_id=2128622806 instance=ExtResource("1_uwrxv")]
 position = Vector2(-429, -3)
 
 [connection signal="body_entered" from="map/boundaries/Area2D" to="." method="_on_boundaries_body_entered"]
-[connection signal="body_entered" from="map/boundaries/obstacles_area" to="." method="_on_obstacles_area_body_entered"]
