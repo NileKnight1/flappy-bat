@@ -15,6 +15,10 @@ var colours = [
 	
 ]
 
+var prices =  [
+	50,100,200,250,300,350
+]
+
 @export var style_num = global.bat_colour
 
 func set_style(num):
@@ -40,26 +44,43 @@ func set_style(num):
 
 
 func _ready() -> void:
+	update_coins()
+	
 	set_style(style_num)
+	
+	for i in range(4):
+		var temp = $CanvasLayer/shop/shop/content/bat_colours/Control.duplicate()
+		temp.get_node("locked").get_node("price").text = str(prices[i+1]) + "$"
+		$CanvasLayer/shop/shop/content/bat_colours.add_child(temp)
+	
+	$CanvasLayer/shop/shop/content/bat_colours/Control/button.button_pressed = 1
+	$CanvasLayer/shop/shop/content/bat_colours/Control/button.disabled  = 0
+	$CanvasLayer/shop/shop/content/bat_colours/Control/locked.visible  = 0
+	
+	
+	
 	var buttons = [
 	
 	]
 	
-	for i in range(4):
-		var temp = $CanvasLayer/shop/shop/content/bat_colours/Control.duplicate()
-		$CanvasLayer/shop/shop/content/bat_colours.add_child(temp)
-	
 	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
 		buttons.append(i.get_node("button"))
-	
 	for i in buttons.size():
 		buttons[i].toggled.connect(_on_bat_colours_toggled.bind(i))
 	
+	buttons.clear()
+	
+	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+		buttons.append(i.get_node("locked").get_node("button"))
+	for i in buttons.size():
+		buttons[i].pressed.connect(_on_bat_colours_buy_pressed.bind(i))
+	
+	
+	
 	var temp = 0
 	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
-		i.get_child(2).set_style(temp)
+		i.get_node("bat").set_style(temp)
 		temp += 1
-	$CanvasLayer/shop/shop/content/bat_colours/Control/button.button_pressed = 1
 	
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#
@@ -100,8 +121,16 @@ func _ready() -> void:
 func _on_bat_colours_toggled(toggled_on, index) -> void:
 	global.bat_colour = index
 	set_style(index)
-	print(index)
+	#print(index)
 
+var cur_index = 0
+func _on_bat_colours_buy_pressed(index):
+	if global.coins >= prices[index]:
+		#print(index)
+		cur_index = index
+		$CanvasLayer/shop/confirm.visible = 1
+	else:
+		print("poor")
 
 func tween_rotation(node, rot, time, rev = 1):
 	var tween = create_tween()
@@ -148,10 +177,13 @@ func _on_right_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 			shop_open = 1
 			var tween = create_tween()
 			tween.tween_property($CanvasLayer/bat, "position:x", bat_def-750, 0.4)
+			$CanvasLayer/shop.visible = 1
 		else:
 			shop_open = 0
 			var tween = create_tween()
 			tween.tween_property($CanvasLayer/bat, "position:x", bat_def, 0.4)
+			$CanvasLayer/shop.visible = 0
+			
 
 func _on_right_mouse_entered() -> void:
 	$CanvasLayer/bat/sprite/wing1.modulate = Color(1.4,1.4,1.4,1.0)
@@ -196,3 +228,16 @@ func label_show(msg):
 func label_hide():
 	var tween = create_tween()
 	tween.tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.1)
+
+func update_coins():
+	$CanvasLayer/shop/coins/label.text = str(global.coins)
+
+func _on_cancel_pressed() -> void:
+	$CanvasLayer/shop/confirm.visible = 0
+func _on_confirm_pressed() -> void:
+	$CanvasLayer/shop/shop/content/bat_colours.get_child(cur_index).get_node("locked").visible = 0
+	$CanvasLayer/shop/shop/content/bat_colours.get_child(cur_index).get_node("button").disabled = 0
+	global.coins -= prices[cur_index]
+	update_coins()
+	
+	$CanvasLayer/shop/confirm.visible = 0

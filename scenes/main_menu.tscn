@@ -144,7 +144,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekt7"]
-bg_color = Color(0.23539785, 0.046562456, 0.093890734, 1)
+bg_color = Color(0.015834974, 0.15691778, 0.05680093, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -162,6 +162,26 @@ bg_color = Color(0, 0, 0, 0.39215687)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hdxto"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3c02t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.2664773, 0.0057546087, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+bg_color = Color(0, 0.11450154, 0.12757239, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 5
 
 [node name="main_menu" type="Node2D" unique_id=1559192162]
 modulate = Color(1, 1, 1, 0)
@@ -417,7 +437,7 @@ text = "$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/shop/coins" unique_id=604253618]
+[node name="label" type="Label" parent="CanvasLayer/shop/coins" unique_id=604253618]
 offset_left = 1019.0
 offset_top = 57.0
 offset_right = 1218.0
@@ -508,11 +528,87 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+disabled = true
 toggle_mode = true
 button_group = ExtResource("4_8ln24")
 
+[node name="locked" type="Control" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1248199173]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=1180681528]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ln24")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=536911742]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+
+[node name="price" type="Label" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=1916007983]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 158.0
+offset_right = 206.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 23
+text = "50$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="bat" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1078022397 instance=ExtResource("1_l6cm7")]
 position = Vector2(111, 101)
+
+[node name="confirm" type="Node2D" parent="CanvasLayer/shop" unique_id=1263944536]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/confirm" unique_id=1709756814]
+offset_right = 1298.0
+offset_bottom = 729.0
+
+[node name="bg" type="Panel" parent="CanvasLayer/shop/confirm" unique_id=405185159]
+offset_left = 367.18353
+offset_top = 245.0
+offset_right = 912.81647
+offset_bottom = 553.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rtw2f")
+
+[node name="confirm" type="Button" parent="CanvasLayer/shop/confirm" unique_id=1182157979]
+custom_minimum_size = Vector2(110, 35)
+offset_left = 412.0
+offset_top = 458.0
+offset_right = 596.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "Confirm"
+
+[node name="cancel" type="Button" parent="CanvasLayer/shop/confirm" unique_id=735408954]
+custom_minimum_size = Vector2(110, 35)
+offset_left = 678.0
+offset_top = 458.0
+offset_right = 862.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "Cancel"
 
 [connection signal="timeout" from="CanvasLayer/bat/eyes" to="." method="_on_eyes_timeout"]
 [connection signal="input_event" from="CanvasLayer/bat/left" to="." method="_on_left_input_event"]
@@ -524,3 +620,5 @@ position = Vector2(111, 101)
 [connection signal="input_event" from="CanvasLayer/bat/center" to="." method="_on_center_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/shop/confirm/confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="CanvasLayer/shop/confirm/cancel" to="." method="_on_cancel_pressed"]

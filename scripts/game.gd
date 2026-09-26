@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 	
 	$map/obstacles.position.x -= game_speed
 	$map/coins.position.x -= game_speed
+	#$player.get_node("p").position.x -= game_speed
+	
 	
 	
 	while obstacles_count < 20:
