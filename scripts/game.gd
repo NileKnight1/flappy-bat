@@ -2,12 +2,18 @@ extends Node2D
 
 
 func _ready() -> void:
-	start_game()
+	#$CanvasLayer/restart.position.x += 230
+	$CanvasLayer/restart.scale = Vector2(0.1,0.1)
 	
-
+	$CanvasLayer/red.modulate = Color(0.0, 0.0, 0.0, 1.0)
+	$CanvasLayer/coins.text = "Coins: " + str(global.coins)
+	start_game()
 
 func start_game():
+	$CanvasLayer/red.modulate = Color(0.0, 0.0, 0.0, 1.0)
+	
 	game_running = 1
+	$player.game_running =1
 	$difficulty.start()
 	spawn_obstacle()
 	spawn_obstacle()
@@ -111,10 +117,18 @@ func _on_boundaries_body_entered(body: Node2D) -> void:
 
 func kill():
 	game_running = 0
+	$player.game_running =0
+
 	print("dead")
+	var tween = create_tween()
+	tween.tween_property($CanvasLayer/red, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
+	#tween.tween_property($CanvasLayer/restart, "position:x", $CanvasLayer/restart.position.x - 250, 0.2)
+	tween.tween_property($CanvasLayer/restart, "scale", Vector2(1,1), 0.2)
+	
+	
 	$player.get_node("col").set_deferred("disabled", 1)
 	await get_tree().create_timer(0.01).timeout
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	#get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 
 func _on_obstacles_area_body_entered(body: Node2D) -> void:
@@ -126,7 +140,7 @@ var cur_x_diff = 700
 var game_speed = 5
 
 func _on_difficulty_timeout() -> void:
-	return
+	#return
 	if game_speed < 10:
 		game_speed += 0.5
 	if gap > 100:
@@ -138,11 +152,17 @@ var points = 0
 var coins = 0
 
 func add_point():
+	global.highest_score = max(global.highest_score, points/2)
 	points += 1
 	$CanvasLayer/points.text = "Distance: " + str(points/2) + "m"
 	print(points)
 	#print("points")
 func add_coin():
 	coins += 1
-	$CanvasLayer/coins.text = "Coins: " + str(coins)
+	global.coins += 1
+	$CanvasLayer/coins.text = "Coins: " + str(global.coins)
 	print(points)
+
+
+func _on_restart_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game.tscn")

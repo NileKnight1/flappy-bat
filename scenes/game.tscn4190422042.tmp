@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://dbqe4j51fpuqb"]
+
+[ext_resource type="PackedScene" uid="uid://4vjxjsmvw54v" path="res://scenes/bat.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://ubl3nf231uqf" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://c27nw0p25lebr" path="res://scripts/coin.gd" id="2_lnu2h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekt7"]
+bg_color = Color(0.72386265, 0.58249575, 0.122853704, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bekt7"]
+radius = 18.0
+height = 74.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlew8"]
+bg_color = Color(0.05164527, 0.035177767, 0.26976654, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqjtg"]
+bg_color = Color(0.33531556, 0.16519108, 0.17456797, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8jhjc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+
+[node name="game" type="Node2D" unique_id=1468201715]
+script = ExtResource("1_yqjtg")
+
+[node name="map" type="Node2D" parent="." unique_id=88849479]
+
+[node name="coin" type="Area2D" parent="map" unique_id=2137118346]
+position = Vector2(0, 211)
+script = ExtResource("2_lnu2h")
+
+[node name="Panel" type="Panel" parent="map/coin" unique_id=1363569054]
+offset_left = 8.0
+offset_top = -25.0
+offset_right = 48.0
+offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
+
+[node name="Label" type="Label" parent="map/coin" unique_id=2003827665]
+offset_left = 22.0
+offset_top = -22.0
+offset_right = 35.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 22
+text = "$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map/coin" unique_id=156037276]
+position = Vector2(28, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bekt7")
+
+[node name="bg" type="Node2D" parent="map" unique_id=2064278073]
+
+[node name="sky" type="Panel" parent="map/bg" unique_id=957952412]
+offset_left = -730.0
+offset_top = -526.0
+offset_right = 661.0
+offset_bottom = 345.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vlew8")
+
+[node name="obstacles" type="Node2D" parent="map" unique_id=375510223]
+
+[node name="coins" type="Node2D" parent="map" unique_id=1389249179]
+
+[node name="cam" type="Camera2D" parent="." unique_id=1557071707]
+position = Vector2(0, -3)
+
+[node name="player" parent="." unique_id=2128622806 instance=ExtResource("1_uwrxv")]
+position = Vector2(-429, -3)
+
+[node name="boundaries" type="Node2D" parent="." unique_id=1041325356]
+position = Vector2(0, 113)
+
+[node name="ground" type="Panel" parent="boundaries" unique_id=680482850]
+offset_left = -730.0
+offset_top = -448.0
+offset_right = 661.0
+offset_bottom = -353.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
+
+[node name="ground2" type="Panel" parent="boundaries" unique_id=179659455]
+offset_left = -730.0
+offset_top = 111.0
+offset_right = 661.0
+offset_bottom = 206.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="boundaries" unique_id=673053264]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/StaticBody2D" unique_id=713542070]
+position = Vector2(0, -355)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_8jhjc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="boundaries/StaticBody2D" unique_id=672302870]
+position = Vector2(0, 113)
+shape = SubResource("WorldBoundaryShape2D_8jhjc")
+
+[node name="Area2D" type="Area2D" parent="boundaries" unique_id=441474376]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/Area2D" unique_id=988832420]
+position = Vector2(0, -353.2)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_8jhjc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="boundaries/Area2D" unique_id=486392097]
+position = Vector2(0, 111)
+shape = SubResource("WorldBoundaryShape2D_8jhjc")
+
+[node name="free" type="StaticBody2D" parent="boundaries" unique_id=1582998418]
+position = Vector2(-116, 44)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="boundaries/free" unique_id=1456903032]
+position = Vector2(-731, -105)
+rotation = 1.5707966
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="difficulty" type="Timer" parent="." unique_id=1849449303]
+wait_time = 5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=991589040]
+
+[node name="points" type="Label" parent="CanvasLayer" unique_id=1955734069]
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 123.0
+offset_bottom = 48.0
+text = "Distance: 0m"
+
+[node name="coins" type="Label" parent="CanvasLayer" unique_id=495679492]
+offset_left = 23.0
+offset_top = 52.0
+offset_right = 123.0
+offset_bottom = 75.0
+text = "Distance: 0m"
+
+[connection signal="body_entered" from="map/coin" to="map/coin" method="_on_body_entered"]
+[connection signal="body_entered" from="boundaries/Area2D" to="." method="_on_boundaries_body_entered"]
+[connection signal="timeout" from="difficulty" to="." method="_on_difficulty_timeout"]

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://4vjxjsmvw54v" path="res://scenes/bat.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://ubl3nf231uqf" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://c27nw0p25lebr" path="res://scripts/coin.gd" id="2_lnu2h"]
+[ext_resource type="FontFile" uid="uid://w7c4ufuutvj8" path="res://assets/Heylowitch-Regular.otf" id="4_lbhrr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekt7"]
 bg_color = Color(0.72386265, 0.58249575, 0.122853704, 1)
@@ -29,6 +30,66 @@ bg_color = Color(0.33531556, 0.16519108, 0.17456797, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8jhjc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+
+[sub_resource type="Gradient" id="Gradient_lnu2h"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bekt7"]
+gradient = SubResource("Gradient_lnu2h")
+fill = 1
+fill_from = Vector2(0.24242425, 0.48989898)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vlew8"]
+texture = SubResource("GradientTexture2D_bekt7")
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+colors = PackedColorArray(0, 0, 0, 0, 0.36, 0, 0.053999864, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iywne"]
+gradient = SubResource("Gradient_lbhrr")
+fill = 1
+fill_from = Vector2(0.24242425, 0.48989898)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p57ef"]
+texture = SubResource("GradientTexture2D_iywne")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
+bg_color = Color(0.09194663, 0.0192, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.045, 0.060750015, 0.15, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+bg_color = Color(0.047596924, 0.00851498, 0.097481154, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.045, 0.060750015, 0.15, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0.15323928, 0.04632827, 0.2544358, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.045, 0.060750015, 0.15, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [node name="game" type="Node2D" unique_id=1468201715]
 script = ExtResource("1_yqjtg")
@@ -76,9 +137,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vlew8")
 
 [node name="cam" type="Camera2D" parent="." unique_id=1557071707]
 position = Vector2(0, -3)
+zoom = Vector2(1.085, 1.085)
 
 [node name="player" parent="." unique_id=2128622806 instance=ExtResource("1_uwrxv")]
-position = Vector2(-429, -3)
+position = Vector2(-324, -3)
 
 [node name="boundaries" type="Node2D" parent="." unique_id=1041325356]
 position = Vector2(0, 113)
@@ -94,7 +156,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
 offset_left = -730.0
 offset_top = 111.0
 offset_right = 661.0
-offset_bottom = 206.0
+offset_bottom = 230.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yqjtg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="boundaries" unique_id=673053264]
@@ -132,6 +194,16 @@ wait_time = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=991589040]
 
+[node name="black" type="Panel" parent="CanvasLayer" unique_id=263466155]
+offset_right = 1283.0
+offset_bottom = 727.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vlew8")
+
+[node name="red" type="Panel" parent="CanvasLayer" unique_id=21943961]
+offset_right = 1283.0
+offset_bottom = 727.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p57ef")
+
 [node name="points" type="Label" parent="CanvasLayer" unique_id=1955734069]
 offset_left = 23.0
 offset_top = 25.0
@@ -146,6 +218,41 @@ offset_right = 123.0
 offset_bottom = 75.0
 text = "Distance: 0m"
 
+[node name="restart" type="VBoxContainer" parent="CanvasLayer" unique_id=434678893]
+offset_left = 1020.0
+offset_top = 3.0
+offset_right = 1221.0
+offset_bottom = 725.0
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="restart" type="Button" parent="CanvasLayer/restart" unique_id=1373259626]
+custom_minimum_size = Vector2(136.68, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.7411765, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("4_lbhrr")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnu2h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbhrr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iywne")
+text = "Restart"
+
+[node name="main_menu" type="Button" parent="CanvasLayer/restart" unique_id=647058712]
+custom_minimum_size = Vector2(200.595, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.7411765, 0.7411765, 1)
+theme_override_fonts/font = ExtResource("4_lbhrr")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnu2h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbhrr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iywne")
+text = "Main Menu"
+
+[node name="msg" type="Label" parent="CanvasLayer" unique_id=1938188192]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="body_entered" from="map/coin" to="map/coin" method="_on_body_entered"]
 [connection signal="body_entered" from="boundaries/Area2D" to="." method="_on_boundaries_body_entered"]
 [connection signal="timeout" from="difficulty" to="." method="_on_difficulty_timeout"]
+[connection signal="pressed" from="CanvasLayer/restart/restart" to="." method="_on_restart_pressed"]

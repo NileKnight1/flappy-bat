@@ -211,7 +211,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5fn3r")
 
 [node name="col" type="CollisionShape2D" parent="." unique_id=2070697087]
 shape = SubResource("CircleShape2D_uhqni")
-disabled = true
 
 [node name="eyes" type="Timer" parent="." unique_id=407985895]
 wait_time = 5.0
