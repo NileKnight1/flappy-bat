@@ -5,7 +5,43 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -300.0
 var game_running = 0
 
+
+var colours = [
+	["541880"],
+	["dcbe95"],
+	["c4c4c0"],
+	["d97a4a"],
+	["b8d4dc"],
+	
+]
+
+@export var style_num = global.bat_colour
+
+func set_style(num):
+	style_num = num
+	for i in $sprite.get_children():
+		if i.get_children():
+			if i.name == "eyes": continue
+			for j in i.get_children():
+				if j is Panel:
+					var style = j.get_theme_stylebox("panel").duplicate()
+					style.bg_color = Color(colours[style_num][0])
+					j.add_theme_stylebox_override("panel", style)
+				elif j.name == "color":
+					j.color = colours[style_num][0]
+					
+		#else:
+			#if i is Panel:
+				#var style = i.get_theme_stylebox("panel").duplicate()
+				#style.bg_color = Color(colours[style_num][0])
+				#i.add_theme_stylebox_override("panel", style)
+			#elif i.name == "color":
+				#i.color = colours[style_num][0]
+
+
 func _ready() -> void:
+	set_style(style_num)
+	
 	#var tween = create_tween()
 	#tween.set_loops()
 	#tween.tween_property($sprite/wing1, "rotation", deg_to_rad(7), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

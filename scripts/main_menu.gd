@@ -6,9 +6,61 @@ func check_click(event):
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		return 1
 
+var colours = [
+	["541880"],
+	["dcbe95"],
+	["c4c4c0"],
+	["d97a4a"],
+	["b8d4dc"],
+	
+]
+
+@export var style_num = global.bat_colour
+
+func set_style(num):
+	style_num = num
+	for i in $CanvasLayer/bat/sprite.get_children():
+		if i.get_children():
+			for j in i.get_children():
+				if j is Panel:
+					var style = j.get_theme_stylebox("panel").duplicate()
+					style.bg_color = Color(colours[style_num][0])
+					j.add_theme_stylebox_override("panel", style)
+				elif j.name == "color":
+					j.color = colours[style_num][0]
+		else:
+			if i is Panel:
+				var style = i.get_theme_stylebox("panel").duplicate()
+				style.bg_color = Color(colours[style_num][0])
+				i.add_theme_stylebox_override("panel", style)
+			elif i.name == "color":
+				i.color = colours[style_num][0]
+
+
 
 
 func _ready() -> void:
+	set_style(style_num)
+	var buttons = [
+	
+	]
+	
+	for i in range(4):
+		var temp = $CanvasLayer/shop/shop/content/bat_colours/Control.duplicate()
+		$CanvasLayer/shop/shop/content/bat_colours.add_child(temp)
+	
+	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+		buttons.append(i.get_node("button"))
+	
+	for i in buttons.size():
+		buttons[i].toggled.connect(_on_bat_colours_toggled.bind(i))
+	
+	var temp = 0
+	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+		i.get_child(2).set_style(temp)
+		temp += 1
+	$CanvasLayer/shop/shop/content/bat_colours/Control/button.button_pressed = 1
+	
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#
 	#var tween = create_tween().set_parallel()
@@ -43,6 +95,13 @@ func _ready() -> void:
 	tween_rotation($CanvasLayer/bat/sprite/ear1, 1.5, 0.5)
 	tween_rotation($CanvasLayer/bat/sprite/ear2, 1.5, 0.5, -1)
 	
+
+
+func _on_bat_colours_toggled(toggled_on, index) -> void:
+	global.bat_colour = index
+	set_style(index)
+	print(index)
+
 
 func tween_rotation(node, rot, time, rev = 1):
 	var tween = create_tween()
