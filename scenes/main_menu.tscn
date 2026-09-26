@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsajkr8w7bkl6" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://w7c4ufuutvj8" path="res://assets/Heylowitch-Regular.otf" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://c27nw0p25lebr" path="res://scripts/coin.gd" id="3_bqqt6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(0.050980393, 0.03529412, 0.27058825, 1)
@@ -93,7 +94,23 @@ font = ExtResource("2_ekxnf")
 font_size = 110
 font_color = Color(0.78, 0.78, 0.78, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.72386265, 0.58249575, 0.122853704, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
 [node name="main_menu" type="Node2D" unique_id=1559192162]
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_ekxnf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=629209355]
@@ -250,33 +267,30 @@ disabled = true
 wait_time = 5.0
 autostart = true
 
-[node name="left" type="Area2D" parent="CanvasLayer" unique_id=666368355]
-position = Vector2(646.99994, 200)
-scale = Vector2(3.710514, 3.710514)
+[node name="left" type="Area2D" parent="CanvasLayer/bat" unique_id=666368355]
+position = Vector2(3.50354, -1.3475227)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/left" unique_id=936510855]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/left" unique_id=936510855]
 position = Vector2(-52.553356, -1.8865303)
 rotation = -0.7853982
 scale = Vector2(3.2939124, 1.3216375)
 shape = SubResource("CapsuleShape2D_bqqt6")
 
-[node name="right" type="Area2D" parent="CanvasLayer" unique_id=1484955337]
-position = Vector2(812.99994, 379)
+[node name="right" type="Area2D" parent="CanvasLayer/bat" unique_id=1484955337]
+position = Vector2(48.241272, 46.893772)
 rotation = 1.5707964
-scale = Vector2(3.710514, 3.710514)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/right" unique_id=35128428]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/right" unique_id=35128428]
 position = Vector2(-48.510773, -1.0780168)
 rotation = -0.7853982
 scale = Vector2(3.2939124, 1.3216375)
 shape = SubResource("CapsuleShape2D_bqqt6")
 
-[node name="center" type="Area2D" parent="CanvasLayer" unique_id=4372393]
-position = Vector2(812.99994, 379)
+[node name="center" type="Area2D" parent="CanvasLayer/bat" unique_id=4372393]
+position = Vector2(48.241272, 46.893772)
 rotation = 1.5707964
-scale = Vector2(3.710514, 3.710514)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/center" unique_id=380621208]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/center" unique_id=380621208]
 position = Vector2(-47.971786, 48.241276)
 scale = Vector2(3.2939124, 1.3216375)
 shape = SubResource("CapsuleShape2D_wu84c")
@@ -288,18 +302,56 @@ offset_right = 1280.0
 offset_bottom = 941.0
 
 [node name="Label" type="Label" parent="CanvasLayer/CenterContainer" unique_id=1873000104]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_vlew8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="fade" type="Panel" parent="CanvasLayer" unique_id=449426093]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1284.0
+offset_bottom = 726.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
+
+[node name="shop" type="Node2D" parent="CanvasLayer" unique_id=493377670]
+
+[node name="coins" type="Node2D" parent="CanvasLayer/shop" unique_id=960971816]
+
+[node name="coin" type="Node2D" parent="CanvasLayer/shop/coins" unique_id=1337364303]
+position = Vector2(924, 100)
+script = ExtResource("3_bqqt6")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/coins/coin" unique_id=919412787]
+offset_left = -37.0
+offset_top = -70.0
+offset_right = 93.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wu84c")
+
+[node name="Label" type="Label" parent="CanvasLayer/shop/coins/coin" unique_id=762875840]
+offset_left = 2.0
+offset_top = -69.69231
+offset_right = 56.0
+offset_bottom = 59.307693
+theme_override_font_sizes/font_size = 94
+text = "$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/coins" unique_id=811501121]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
 [connection signal="timeout" from="CanvasLayer/bat/eyes" to="." method="_on_eyes_timeout"]
-[connection signal="input_event" from="CanvasLayer/left" to="." method="_on_left_input_event"]
-[connection signal="mouse_entered" from="CanvasLayer/left" to="." method="_on_left_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/left" to="." method="_on_left_mouse_exited"]
-[connection signal="input_event" from="CanvasLayer/right" to="." method="_on_right_input_event"]
-[connection signal="mouse_entered" from="CanvasLayer/right" to="." method="_on_right_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/right" to="." method="_on_right_mouse_exited"]
-[connection signal="input_event" from="CanvasLayer/center" to="." method="_on_center_input_event"]
-[connection signal="mouse_entered" from="CanvasLayer/center" to="." method="_on_center_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/center" to="." method="_on_center_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/bat/left" to="." method="_on_left_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/left" to="." method="_on_left_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/bat/right" to="." method="_on_right_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/right" to="." method="_on_right_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/bat/center" to="." method="_on_center_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_exited"]

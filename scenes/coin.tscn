@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://djscubxfftn53"]
+
+[ext_resource type="Script" uid="uid://c27nw0p25lebr" path="res://scripts/coin.gd" id="1_rwqht"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekt7"]
+bg_color = Color(0.72386265, 0.58249575, 0.122853704, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bekt7"]
+radius = 18.0
+height = 74.0
+
+[node name="coin" type="Area2D" unique_id=245523163]
+script = ExtResource("1_rwqht")
+
+[node name="Panel" type="Panel" parent="." unique_id=919412787]
+offset_left = 8.0
+offset_top = -25.0
+offset_right = 48.0
+offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
+
+[node name="Label" type="Label" parent="." unique_id=762875840]
+offset_left = 22.0
+offset_top = -22.0
+offset_right = 35.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 22
+text = "$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=965496660]
+position = Vector2(28, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bekt7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
