@@ -15,16 +15,29 @@ var colours = [
 	
 ]
 
-var prices =  [
-	50,100,200,250,300,350
+var trail_colours = [
+	Color(0.2, 0.4, 0.9),
+	Color(0.6, 0.1, 0.8),
+	Color(0.1, 0.7, 0.3),
+	Color(0.8, 0.1, 0.1),
 ]
 
+
+var prices =  [
+	[50,100,200,250,300,350],
+	[10,20,50,250,300,350]
+]
+
+
+
 @export var style_num = global.bat_colour
+@export var trail_num = global.trail_colour
 
 func set_style(num):
 	style_num = num
 	for i in $CanvasLayer/bat/sprite.get_children():
 		if i.get_children():
+			if i.name == "eyes": continue
 			for j in i.get_children():
 				if j is Panel:
 					var style = j.get_theme_stylebox("panel").duplicate()
@@ -32,15 +45,18 @@ func set_style(num):
 					j.add_theme_stylebox_override("panel", style)
 				elif j.name == "color":
 					j.color = colours[style_num][0]
-		else:
-			if i is Panel:
-				var style = i.get_theme_stylebox("panel").duplicate()
-				style.bg_color = Color(colours[style_num][0])
-				i.add_theme_stylebox_override("panel", style)
-			elif i.name == "color":
-				i.color = colours[style_num][0]
 
-
+func set_trail(num):
+	trail_num = num
+	
+	var mat = $trail.process_material.duplicate()
+	var tex = mat.color_ramp.duplicate()
+	tex.gradient = tex.gradient.duplicate()
+	
+	tex.gradient.set_color(0, trail_colours[num])
+	mat.color_ramp = tex
+	
+	$trail.process_material = mat
 
 
 func _ready() -> void:
@@ -48,39 +64,66 @@ func _ready() -> void:
 	
 	set_style(style_num)
 	
+	$CanvasLayer/shop/shop/bat_colours/content/Control/bat.get_node("trail").visible = 0
+	$CanvasLayer/shop/shop/trail_colours/content/Control/bat.get_node("sprite").visible = 0
+	
 	for i in range(4):
-		var temp = $CanvasLayer/shop/shop/content/bat_colours/Control.duplicate()
-		temp.get_node("locked").get_node("price").text = str(prices[i+1]) + "$"
-		$CanvasLayer/shop/shop/content/bat_colours.add_child(temp)
+		var temp = $CanvasLayer/shop/shop/bat_colours/content/Control.duplicate()
+		temp.get_node("locked").get_node("price").text = str(prices[0][i+1]) + "$"
+		$CanvasLayer/shop/shop/bat_colours/content.add_child(temp)
 	
-	$CanvasLayer/shop/shop/content/bat_colours/Control/button.button_pressed = 1
-	$CanvasLayer/shop/shop/content/bat_colours/Control/button.disabled  = 0
-	$CanvasLayer/shop/shop/content/bat_colours/Control/locked.visible  = 0
+	for i in range(3):
+		var temp = $CanvasLayer/shop/shop/trail_colours/content/Control.duplicate()
+		temp.get_node("locked").get_node("price").text = str(prices[1][i+1]) + "$"
+		$CanvasLayer/shop/shop/trail_colours/content.add_child(temp)
 	
+	$CanvasLayer/shop/shop/bat_colours/content/Control/button.button_pressed = 1
+	$CanvasLayer/shop/shop/bat_colours/content/Control/button.disabled  = 0
+	$CanvasLayer/shop/shop/bat_colours/content/Control/locked.visible  = 0
+	$CanvasLayer/shop/shop/bat_colours.visible = 1
 	
 	
 	var buttons = [
 	
 	]
 	
-	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+	for i in $CanvasLayer/shop/shop/bat_colours/content.get_children():
 		buttons.append(i.get_node("button"))
 	for i in buttons.size():
 		buttons[i].toggled.connect(_on_bat_colours_toggled.bind(i))
 	
 	buttons.clear()
 	
-	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+	for i in $CanvasLayer/shop/shop/bat_colours/content.get_children():
 		buttons.append(i.get_node("locked").get_node("button"))
 	for i in buttons.size():
 		buttons[i].pressed.connect(_on_bat_colours_buy_pressed.bind(i))
 	
-	
-	
 	var temp = 0
-	for i in $CanvasLayer/shop/shop/content/bat_colours.get_children():
+	for i in $CanvasLayer/shop/shop/bat_colours/content.get_children():
 		i.get_node("bat").set_style(temp)
 		temp += 1
+	
+	buttons.clear()
+	
+	for i in $CanvasLayer/shop/shop/trail_colours/content.get_children():
+		buttons.append(i.get_node("button"))
+	for i in buttons.size():
+		buttons[i].toggled.connect(_on_trail_colours_toggled.bind(i))
+	
+	buttons.clear()
+	
+	for i in $CanvasLayer/shop/shop/trail_colours/content.get_children():
+		buttons.append(i.get_node("locked").get_node("button"))
+	for i in buttons.size():
+		buttons[i].pressed.connect(_on_trail_colours_buy_pressed.bind(i))
+	
+	temp = 0
+	for i in $CanvasLayer/shop/shop/trail_colours/content.get_children():
+		i.get_node("bat").set_trail(temp)
+		temp += 1
+	
+	
 	
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#
@@ -123,10 +166,23 @@ func _on_bat_colours_toggled(toggled_on, index) -> void:
 	set_style(index)
 	#print(index)
 
+func _on_trail_colours_toggled(toggled_on, index) -> void:
+	global.trail_colour = index
+	set_trail(index)
+	#print(index)
+
+
 var cur_index = 0
 func _on_bat_colours_buy_pressed(index):
-	if global.coins >= prices[index]:
+	if global.coins >= prices[0][index]:
 		#print(index)
+		cur_index = index
+		$CanvasLayer/shop/confirm.visible = 1
+	else:
+		print("poor")
+
+func _on_trail_colours_buy_pressed(index):
+	if global.coins >= prices[1][index]:
 		cur_index = index
 		$CanvasLayer/shop/confirm.visible = 1
 	else:
@@ -207,7 +263,6 @@ func _on_center_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 		var tween = create_tween().set_parallel()
 		tween.tween_property($CanvasLayer/bat, "scale", Vector2(32,32), 0.5)
 		tween.tween_property($CanvasLayer/fade, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
-		
 
 func _on_center_mouse_entered() -> void:
 	$CanvasLayer/bat/sprite/body.modulate = Color(1.4,1.4,1.4,1.0)
@@ -224,7 +279,7 @@ func label_show(msg):
 	var tween = create_tween()
 	tween.tween_property(label, "modulate", Color(1,1,1,1), 0.3)
 
-
+var shop_index = 0
 func label_hide():
 	var tween = create_tween()
 	tween.tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.1)
@@ -235,9 +290,24 @@ func update_coins():
 func _on_cancel_pressed() -> void:
 	$CanvasLayer/shop/confirm.visible = 0
 func _on_confirm_pressed() -> void:
-	$CanvasLayer/shop/shop/content/bat_colours.get_child(cur_index).get_node("locked").visible = 0
-	$CanvasLayer/shop/shop/content/bat_colours.get_child(cur_index).get_node("button").disabled = 0
-	global.coins -= prices[cur_index]
-	update_coins()
 	
+	match shop_index:
+		0:
+			$CanvasLayer/shop/shop/bat_colours/content.get_child(cur_index).get_node("locked").visible = 0
+			$CanvasLayer/shop/shop/bat_colours/content.get_child(cur_index).get_node("button").disabled = 0
+		1:
+			$CanvasLayer/shop/shop/trail_colours/content.get_child(cur_index).get_node("locked").visible = 0
+			$CanvasLayer/shop/shop/trail_colours/content.get_child(cur_index).get_node("button").disabled = 0
+	
+	global.coins -= prices[shop_index][cur_index]
+	update_coins()
 	$CanvasLayer/shop/confirm.visible = 0
+
+
+func _on_bat_colours_menu_toggled(toggled_on: bool) -> void:
+	$CanvasLayer/shop/shop/bat_colours.visible = toggled_on
+	shop_index = 0
+
+func _on_trail_colours_menu_toggled(toggled_on: bool) -> void:
+	$CanvasLayer/shop/shop/trail_colours.visible = toggled_on
+	shop_index = 1

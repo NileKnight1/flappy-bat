@@ -390,6 +390,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
 
 [node name="shop" type="Node2D" parent="CanvasLayer" unique_id=493377670]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer/shop" unique_id=89901482]
 visible = false
@@ -471,7 +472,7 @@ button_pressed = true
 button_group = ExtResource("3_wu84c")
 text = "Bat Colours"
 
-[node name="bat_colours2" type="Button" parent="CanvasLayer/shop/shop/titles" unique_id=1385414308]
+[node name="trail_colours" type="Button" parent="CanvasLayer/shop/shop/titles" unique_id=1385414308]
 custom_minimum_size = Vector2(110, 35)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -494,22 +495,23 @@ toggle_mode = true
 button_group = ExtResource("3_wu84c")
 text = "Soon ..."
 
-[node name="content" type="ScrollContainer" parent="CanvasLayer/shop/shop" unique_id=891890222]
+[node name="bat_colours" type="ScrollContainer" parent="CanvasLayer/shop/shop" unique_id=891890222]
+visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
-[node name="bat_colours" type="VFlowContainer" parent="CanvasLayer/shop/shop/content" unique_id=902645159]
+[node name="content" type="VFlowContainer" parent="CanvasLayer/shop/shop/bat_colours" unique_id=902645159]
 custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 accessibility_region = true
 
-[node name="Control" type="Control" parent="CanvasLayer/shop/shop/content/bat_colours" unique_id=170949668]
+[node name="Control" type="Control" parent="CanvasLayer/shop/shop/bat_colours/content" unique_id=170949668]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1205567464]
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1205567464]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
 offset_left = 11.0
@@ -517,7 +519,7 @@ offset_right = 211.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
 
-[node name="button" type="Button" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1478244169]
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1478244169]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 5.0
@@ -532,12 +534,12 @@ disabled = true
 toggle_mode = true
 button_group = ExtResource("4_8ln24")
 
-[node name="locked" type="Control" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1248199173]
+[node name="locked" type="Control" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1248199173]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=1180681528]
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=1180681528]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
 offset_left = 11.0
@@ -545,7 +547,7 @@ offset_right = 211.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ln24")
 
-[node name="button" type="Button" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=536911742]
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=536911742]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 5.0
@@ -557,7 +559,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
 
-[node name="price" type="Label" parent="CanvasLayer/shop/shop/content/bat_colours/Control/locked" unique_id=1916007983]
+[node name="price" type="Label" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=1916007983]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 158.0
@@ -569,8 +571,87 @@ text = "50$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bat" parent="CanvasLayer/shop/shop/content/bat_colours/Control" unique_id=1078022397 instance=ExtResource("1_l6cm7")]
+[node name="bat" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1078022397 instance=ExtResource("1_l6cm7")]
 position = Vector2(111, 101)
+
+[node name="trail_colours" type="ScrollContainer" parent="CanvasLayer/shop/shop" unique_id=121438978]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="content" type="VFlowContainer" parent="CanvasLayer/shop/shop/trail_colours" unique_id=730314483]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+accessibility_region = true
+
+[node name="Control" type="Control" parent="CanvasLayer/shop/shop/trail_colours/content" unique_id=600350654]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1827626146]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1507375865]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+disabled = true
+toggle_mode = true
+button_group = ExtResource("4_8ln24")
+
+[node name="locked" type="Control" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=702723977]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=868861361]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ln24")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=1627991073]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+
+[node name="price" type="Label" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=1996984212]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 158.0
+offset_right = 206.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 23
+text = "50$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bat" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1132715961 instance=ExtResource("1_l6cm7")]
+position = Vector2(196, 91)
 
 [node name="confirm" type="Node2D" parent="CanvasLayer/shop" unique_id=1263944536]
 visible = false
@@ -620,5 +701,7 @@ text = "Cancel"
 [connection signal="input_event" from="CanvasLayer/bat/center" to="." method="_on_center_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_exited"]
+[connection signal="toggled" from="CanvasLayer/shop/shop/titles/bat_colours" to="." method="_on_bat_colours_menu_toggled"]
+[connection signal="toggled" from="CanvasLayer/shop/shop/titles/trail_colours" to="." method="_on_trail_colours_menu_toggled"]
 [connection signal="pressed" from="CanvasLayer/shop/confirm/confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop/confirm/cancel" to="." method="_on_cancel_pressed"]

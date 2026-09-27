@@ -1,0 +1,703 @@
+[gd_scene format=3 uid="uid://3ut4s52gcllo"]
+
+[ext_resource type="Script" uid="uid://bsajkr8w7bkl6" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://4vjxjsmvw54v" path="res://scenes/bat.tscn" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://w7c4ufuutvj8" path="res://assets/Heylowitch-Regular.otf" id="2_ekxnf"]
+[ext_resource type="ButtonGroup" uid="uid://bkmpcn66qi3ea" path="res://buttons_groups/shop_list.tres" id="3_wu84c"]
+[ext_resource type="ButtonGroup" uid="uid://b4ncwespl2od2" path="res://buttons_groups/bat_colours.tres" id="4_8ln24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
+bg_color = Color(0.050980393, 0.03529412, 0.27058825, 1)
+
+[sub_resource type="Gradient" id="Gradient_vue75"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.7176471)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bekt7"]
+gradient = SubResource("Gradient_vue75")
+fill = 1
+fill_from = Vector2(0.5050505, 0.48989898)
+fill_to = Vector2(0.5050505, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l6cm7"]
+texture = SubResource("GradientTexture2D_bekt7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ss3tx"]
+bg_color = Color(0.32810894, 0.096215986, 0.50163054, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv0ya"]
+bg_color = Color(0.21, 0.21, 0.21, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnldk"]
+bg_color = Color(0.32810894, 0.096215986, 0.50163054, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48wkk"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhqni"]
+bg_color = Color(0.33984843, 0.09990848, 0.51113385, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fn3r"]
+bg_color = Color(0.34117648, 0.09803922, 0.50980395, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhqni"]
+radius = 29.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bqqt6"]
+radius = 6.1904564
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wu84c"]
+radius = 8.345533
+height = 37.928574
+
+[sub_resource type="LabelSettings" id="LabelSettings_vlew8"]
+font = ExtResource("2_ekxnf")
+font_size = 110
+font_color = Color(0.78, 0.78, 0.78, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncv88"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jhjc"]
+bg_color = Color(0, 0.11450154, 0.12757239, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_bqqt6"]
+colors = PackedColorArray(0, 0, 0, 1, 0.015686275, 0.007843138, 0.07450981, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rtw2f"]
+gradient = SubResource("Gradient_bqqt6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqqt6"]
+texture = SubResource("GradientTexture2D_rtw2f")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.72386265, 0.58249575, 0.122853704, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.09194663, 0.0192, 0.16, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.045, 0.060750015, 0.15, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bekt7"]
+bg_color = Color(0.015834974, 0.15691778, 0.05680093, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bekt7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nca3n"]
+bg_color = Color(0, 0, 0, 0.7607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qarp1"]
+bg_color = Color(0, 0, 0, 0.39215687)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hdxto"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3c02t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.2664773, 0.0057546087, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+bg_color = Color(0, 0.11450154, 0.12757239, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 5
+
+[node name="main_menu" type="Node2D" unique_id=1559192162]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_ekxnf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=629209355]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=980194241]
+offset_right = 1284.0
+offset_bottom = 726.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vue75")
+
+[node name="black" type="Panel" parent="CanvasLayer" unique_id=866096171]
+offset_right = 1283.0
+offset_bottom = 727.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_l6cm7")
+
+[node name="bat" type="CharacterBody2D" parent="CanvasLayer" unique_id=2128622806]
+position = Vector2(634, 205)
+scale = Vector2(3.710514, 3.710514)
+
+[node name="sprite" type="Node2D" parent="CanvasLayer/bat" unique_id=1024216441]
+
+[node name="wing1" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=883197741]
+
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/bat/sprite/wing1" unique_id=85014765]
+position = Vector2(-3.3279252, 0.5744674)
+scale = Vector2(1.0801003, 1.1276594)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(28, -9, 47, -28, 79, 8, 61, 8, 50, 19, 28, 11)
+
+[node name="color" type="Polygon2D" parent="CanvasLayer/bat/sprite/wing1" unique_id=2005412095]
+color = Color(0.32941177, 0.09411765, 0.5019608, 1)
+polygon = PackedVector2Array(28, -9, 47, -28, 79, 8, 61, 8, 50, 19, 28, 11)
+
+[node name="wing2" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=614830525]
+
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/bat/sprite/wing2" unique_id=283731471]
+position = Vector2(5.3199997, 0.5744655)
+rotation = 3.1415927
+scale = Vector2(1.08, -1.128)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(28, -9, 47, -28, 79, 8, 61, 8, 50, 19, 28, 11)
+
+[node name="color" type="Polygon2D" parent="CanvasLayer/bat/sprite/wing2" unique_id=262123046]
+position = Vector2(1.4051132, -1.9073486e-06)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+color = Color(0.32941177, 0.09411765, 0.5019608, 1)
+polygon = PackedVector2Array(28, -9, 47, -28, 79, 8, 61, 8, 50, 19, 28, 11)
+
+[node name="ear1" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=1719606629]
+
+[node name="Panel6" type="Panel" parent="CanvasLayer/bat/sprite/ear1" unique_id=1282202502]
+offset_left = 0.9999981
+offset_top = -22.999998
+offset_right = 19.999996
+offset_bottom = 3.8103466
+rotation = 3.926991
+scale = Vector2(-1, 1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ss3tx")
+
+[node name="Panel8" type="Panel" parent="CanvasLayer/bat/sprite/ear1" unique_id=748084234]
+offset_top = -17.0
+offset_right = 12.331497
+offset_bottom = 9.810345
+rotation = 0.7853982
+scale = Vector2(1, -1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lv0ya")
+
+[node name="ear2" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=564273622]
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/bat/sprite/ear2" unique_id=2126108815]
+offset_left = -1.0000019
+offset_top = -23.0
+offset_right = 17.999998
+offset_bottom = 3.8103447
+rotation = 2.3561945
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ss3tx")
+
+[node name="Panel7" type="Panel" parent="CanvasLayer/bat/sprite/ear2" unique_id=624010286]
+offset_top = -17.0
+offset_right = 12.331499
+offset_bottom = 9.810345
+rotation = 2.3561945
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lv0ya")
+
+[node name="tail" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=447190818]
+position = Vector2(-2, -4)
+
+[node name="Panel9" type="Panel" parent="CanvasLayer/bat/sprite/tail" unique_id=2137064230]
+offset_left = -9.332134
+offset_top = 7.0647907
+offset_right = 12.667866
+offset_bottom = 42.06479
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnldk")
+
+[node name="body" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=1517430691]
+position = Vector2(0, 3.8146973e-06)
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/bat/sprite/body" unique_id=1498003479]
+offset_left = -29.000015
+offset_top = -31.000002
+offset_right = 28.999985
+offset_bottom = 31.999998
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnldk")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/bat/sprite" unique_id=851509450]
+offset_left = -15.0
+offset_top = -11.0
+offset_right = -7.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_48wkk")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/bat/sprite" unique_id=1998009406]
+offset_left = 7.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_48wkk")
+
+[node name="eyes" type="Node2D" parent="CanvasLayer/bat/sprite" unique_id=1430631423]
+visible = false
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/bat/sprite/eyes" unique_id=1541952646]
+offset_left = -15.0
+offset_top = -11.0
+offset_right = -7.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uhqni")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/bat/sprite/eyes" unique_id=516862140]
+offset_left = 7.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = -3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5fn3r")
+
+[node name="col" type="CollisionShape2D" parent="CanvasLayer/bat" unique_id=2070697087]
+visible = false
+shape = SubResource("CircleShape2D_uhqni")
+disabled = true
+
+[node name="eyes" type="Timer" parent="CanvasLayer/bat" unique_id=407985895]
+wait_time = 5.0
+autostart = true
+
+[node name="left" type="Area2D" parent="CanvasLayer/bat" unique_id=666368355]
+position = Vector2(3.50354, -1.3475227)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/left" unique_id=936510855]
+position = Vector2(-52.553356, -1.8865303)
+rotation = -0.7853982
+scale = Vector2(3.2939124, 1.3216375)
+shape = SubResource("CapsuleShape2D_bqqt6")
+
+[node name="right" type="Area2D" parent="CanvasLayer/bat" unique_id=1484955337]
+position = Vector2(48.241272, 46.893772)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/right" unique_id=35128428]
+position = Vector2(-48.510773, -1.0780168)
+rotation = -0.7853982
+scale = Vector2(3.2939124, 1.3216375)
+shape = SubResource("CapsuleShape2D_bqqt6")
+
+[node name="center" type="Area2D" parent="CanvasLayer/bat" unique_id=4372393]
+position = Vector2(48.241272, 46.893772)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/bat/center" unique_id=380621208]
+position = Vector2(-47.971786, 48.241276)
+scale = Vector2(3.2939124, 1.3216375)
+shape = SubResource("CapsuleShape2D_wu84c")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=429690086]
+offset_left = -3.0
+offset_top = 210.0
+offset_right = 1280.0
+offset_bottom = 941.0
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer" unique_id=1873000104]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vlew8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fade" type="Panel" parent="CanvasLayer" unique_id=449426093]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1284.0
+offset_bottom = 726.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
+
+[node name="shop" type="Node2D" parent="CanvasLayer" unique_id=493377670]
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop" unique_id=89901482]
+visible = false
+offset_left = 167.0
+offset_top = 48.0
+offset_right = 1113.0
+offset_bottom = 672.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ncv88")
+
+[node name="bg" type="Panel" parent="CanvasLayer/shop" unique_id=97229150]
+offset_left = 167.0
+offset_top = 132.0
+offset_right = 1113.0
+offset_bottom = 666.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8jhjc")
+
+[node name="coins" type="Node2D" parent="CanvasLayer/shop" unique_id=960971816]
+position = Vector2(425, 18)
+scale = Vector2(0.6656039, 0.6656039)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/coins" unique_id=811501121]
+offset_left = 961.0
+offset_top = 55.0
+offset_right = 1237.0
+offset_bottom = 138.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bqqt6")
+
+[node name="coin" type="Node2D" parent="CanvasLayer/shop/coins" unique_id=1337364303]
+position = Vector2(924, 100)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/coins/coin" unique_id=919412787]
+offset_left = -26.0
+offset_top = -59.0
+offset_right = 82.0
+offset_bottom = 49.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wu84c")
+
+[node name="Label" type="Label" parent="CanvasLayer/shop/coins/coin" unique_id=762875840]
+offset_top = -73.0
+offset_right = 54.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 69
+text = "$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label" type="Label" parent="CanvasLayer/shop/coins" unique_id=604253618]
+offset_left = 1019.0
+offset_top = 57.0
+offset_right = 1218.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 50
+text = "600"
+
+[node name="shop" type="VBoxContainer" parent="CanvasLayer/shop" unique_id=1257430443]
+custom_minimum_size = Vector2(500, 500)
+offset_left = 172.0
+offset_top = 137.0
+offset_right = 1108.0
+offset_bottom = 711.0
+theme_override_constants/separation = 16
+
+[node name="titles" type="HBoxContainer" parent="CanvasLayer/shop/shop" unique_id=155799824]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="bat_colours" type="Button" parent="CanvasLayer/shop/shop/titles" unique_id=1191595269]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_wu84c")
+text = "Bat Colours"
+
+[node name="bat_colours2" type="Button" parent="CanvasLayer/shop/shop/titles" unique_id=1385414308]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+toggle_mode = true
+button_group = ExtResource("3_wu84c")
+text = "Bat Trails"
+
+[node name="bat_colours3" type="Button" parent="CanvasLayer/shop/shop/titles" unique_id=451824359]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+disabled = true
+toggle_mode = true
+button_group = ExtResource("3_wu84c")
+text = "Soon ..."
+
+[node name="bat_colours" type="ScrollContainer" parent="CanvasLayer/shop/shop" unique_id=891890222]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="content" type="VFlowContainer" parent="CanvasLayer/shop/shop/bat_colours" unique_id=902645159]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+accessibility_region = true
+
+[node name="Control" type="Control" parent="CanvasLayer/shop/shop/bat_colours/content" unique_id=170949668]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1205567464]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1478244169]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+disabled = true
+toggle_mode = true
+button_group = ExtResource("4_8ln24")
+
+[node name="locked" type="Control" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1248199173]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=1180681528]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ln24")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=536911742]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+
+[node name="price" type="Label" parent="CanvasLayer/shop/shop/bat_colours/content/Control/locked" unique_id=1916007983]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 158.0
+offset_right = 206.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 23
+text = "50$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bat" parent="CanvasLayer/shop/shop/bat_colours/content/Control" unique_id=1078022397 instance=ExtResource("1_l6cm7")]
+position = Vector2(111, 101)
+
+[node name="trail_colours" type="ScrollContainer" parent="CanvasLayer/shop/shop" unique_id=121438978]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="content" type="VFlowContainer" parent="CanvasLayer/shop/shop/trail_colours" unique_id=730314483]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+accessibility_region = true
+
+[node name="Control" type="Control" parent="CanvasLayer/shop/shop/trail_colours/content" unique_id=600350654]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1827626146]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bekt7")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1507375865]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+disabled = true
+toggle_mode = true
+button_group = ExtResource("4_8ln24")
+
+[node name="locked" type="Control" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=702723977]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=868861361]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 211.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ln24")
+
+[node name="button" type="Button" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=1627991073]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 195.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bekt7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nca3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qarp1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hdxto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3c02t")
+
+[node name="price" type="Label" parent="CanvasLayer/shop/shop/trail_colours/content/Control/locked" unique_id=1996984212]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 158.0
+offset_right = 206.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 23
+text = "50$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bat" parent="CanvasLayer/shop/shop/trail_colours/content/Control" unique_id=1132715961 instance=ExtResource("1_l6cm7")]
+position = Vector2(173, 101)
+
+[node name="confirm" type="Node2D" parent="CanvasLayer/shop" unique_id=1263944536]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer/shop/confirm" unique_id=1709756814]
+offset_right = 1298.0
+offset_bottom = 729.0
+
+[node name="bg" type="Panel" parent="CanvasLayer/shop/confirm" unique_id=405185159]
+offset_left = 367.18353
+offset_top = 245.0
+offset_right = 912.81647
+offset_bottom = 553.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rtw2f")
+
+[node name="confirm" type="Button" parent="CanvasLayer/shop/confirm" unique_id=1182157979]
+custom_minimum_size = Vector2(110, 35)
+offset_left = 412.0
+offset_top = 458.0
+offset_right = 596.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "Confirm"
+
+[node name="cancel" type="Button" parent="CanvasLayer/shop/confirm" unique_id=735408954]
+custom_minimum_size = Vector2(110, 35)
+offset_left = 678.0
+offset_top = 458.0
+offset_right = 862.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "Cancel"
+
+[connection signal="timeout" from="CanvasLayer/bat/eyes" to="." method="_on_eyes_timeout"]
+[connection signal="input_event" from="CanvasLayer/bat/left" to="." method="_on_left_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/left" to="." method="_on_left_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/bat/right" to="." method="_on_right_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/right" to="." method="_on_right_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/bat/center" to="." method="_on_center_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/bat/center" to="." method="_on_center_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/shop/confirm/confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="CanvasLayer/shop/confirm/cancel" to="." method="_on_cancel_pressed"]

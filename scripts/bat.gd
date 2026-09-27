@@ -12,10 +12,19 @@ var colours = [
 	["c4c4c0"],
 	["d97a4a"],
 	["b8d4dc"],
-	
 ]
 
+var trail_colours = [
+	Color(0.2, 0.4, 0.9),
+	Color(0.6, 0.1, 0.8),
+	Color(0.1, 0.7, 0.3),
+	Color(0.8, 0.1, 0.1),
+]
+
+
 @export var style_num = global.bat_colour
+@export var trail_num = global.trail_colour
+
 
 func set_style(num):
 	style_num = num
@@ -38,9 +47,21 @@ func set_style(num):
 			#elif i.name == "color":
 				#i.color = colours[style_num][0]
 
+func set_trail(num):
+	trail_num = num
+	
+	var mat = $trail.process_material.duplicate()
+	var tex = mat.color_ramp.duplicate()
+	tex.gradient = tex.gradient.duplicate()
+	
+	tex.gradient.set_color(0, trail_colours[num])
+	mat.color_ramp = tex
+	
+	$trail.process_material = mat
 
 func _ready() -> void:
 	set_style(style_num)
+	set_trail(trail_num)
 	
 	#var tween = create_tween()
 	#tween.set_loops()

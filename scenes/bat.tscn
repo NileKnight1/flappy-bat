@@ -14,7 +14,8 @@ fill_from = Vector2(0.517094, 0.52136755)
 fill_to = Vector2(0.517094, 1)
 
 [sub_resource type="Gradient" id="Gradient_cnldk"]
-colors = PackedColorArray(0.2677287, 0.40656117, 0.72902906, 1, 0.26666668, 0.40784314, 0.7294118, 1)
+offsets = PackedFloat32Array(0.64028776, 1)
+colors = PackedColorArray(0.2677287, 0.40656117, 0.72902906, 1, 0.2701, 0.40807003, 0.73, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ncv88"]
 gradient = SubResource("Gradient_cnldk")
@@ -102,7 +103,7 @@ radius = 29.0
 [node name="bat" type="CharacterBody2D" unique_id=2128622806]
 script = ExtResource("1_uhqni")
 
-[node name="p" type="GPUParticles2D" parent="." unique_id=571285340]
+[node name="trail" type="GPUParticles2D" parent="." unique_id=571285340]
 position = Vector2(-10, 13)
 rotation = -3.1415927
 amount = 40
