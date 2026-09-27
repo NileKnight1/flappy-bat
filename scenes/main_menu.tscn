@@ -183,6 +183,42 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 5
 
+[sub_resource type="Gradient" id="Gradient_8ln24"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oa1go"]
+gradient = SubResource("Gradient_8ln24")
+width = 3
+height = 3
+fill = 1
+fill_from = Vector2(0.517094, 0.52136755)
+fill_to = Vector2(0.517094, 1)
+
+[sub_resource type="Gradient" id="Gradient_tbmy8"]
+offsets = PackedFloat32Array(0.64028776, 1)
+colors = PackedColorArray(0.2677287, 0.40656117, 0.72902906, 1, 0.2701, 0.40807003, 0.73, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jk1qb"]
+gradient = SubResource("Gradient_tbmy8")
+
+[sub_resource type="Curve" id="Curve_5dd4i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8727273, 0.8089888), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lgwnu"]
+curve = SubResource("Curve_5dd4i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flqon"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 20, 0)
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_lgwnu")
+color_ramp = SubResource("GradientTexture1D_jk1qb")
+
 [node name="main_menu" type="Node2D" unique_id=1559192162]
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_ekxnf")
@@ -690,6 +726,16 @@ theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 text = "Cancel"
+
+[node name="trail" type="GPUParticles2D" parent="CanvasLayer" unique_id=1860549312]
+z_index = 1
+position = Vector2(540, 445)
+rotation = 3.1415925
+amount = 40
+texture = SubResource("GradientTexture2D_oa1go")
+lifetime = 0.6
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_flqon")
 
 [connection signal="timeout" from="CanvasLayer/bat/eyes" to="." method="_on_eyes_timeout"]
 [connection signal="input_event" from="CanvasLayer/bat/left" to="." method="_on_left_input_event"]

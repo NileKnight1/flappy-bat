@@ -1,5 +1,8 @@
 extends Node2D
 
+func _process(delta: float) -> void:
+	$CanvasLayer/trail.global_position = get_global_mouse_position()
+
 var stop_clicks = 1
 func check_click(event):
 	if stop_clicks: return 0
@@ -49,17 +52,19 @@ func set_style(num):
 func set_trail(num):
 	trail_num = num
 	
-	var mat = $trail.process_material.duplicate()
-	var tex = mat.color_ramp.duplicate()
-	tex.gradient = tex.gradient.duplicate()
+	var mat = $CanvasLayer/trail.process_material
+	var tex = mat.color_ramp
+	tex.gradient = tex.gradient
 	
 	tex.gradient.set_color(0, trail_colours[num])
 	mat.color_ramp = tex
 	
-	$trail.process_material = mat
+	$CanvasLayer/trail.process_material = mat
 
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 	update_coins()
 	
 	set_style(style_num)
@@ -77,10 +82,18 @@ func _ready() -> void:
 		temp.get_node("locked").get_node("price").text = str(prices[1][i+1]) + "$"
 		$CanvasLayer/shop/shop/trail_colours/content.add_child(temp)
 	
+	
+	
 	$CanvasLayer/shop/shop/bat_colours/content/Control/button.button_pressed = 1
 	$CanvasLayer/shop/shop/bat_colours/content/Control/button.disabled  = 0
 	$CanvasLayer/shop/shop/bat_colours/content/Control/locked.visible  = 0
 	$CanvasLayer/shop/shop/bat_colours.visible = 1
+	
+	$CanvasLayer/shop/shop/trail_colours/content/Control/button.button_pressed = 1
+	$CanvasLayer/shop/shop/trail_colours/content/Control/button.disabled  = 0
+	$CanvasLayer/shop/shop/trail_colours/content/Control/locked.visible  = 0
+	$CanvasLayer/shop/shop/trail_colours.visible = 1
+	
 	
 	
 	var buttons = [
@@ -150,7 +163,9 @@ func _ready() -> void:
 	#
 	#await get_tree().create_timer(1).timeout
 	stop_clicks = 0
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 	bat_def =  $CanvasLayer/bat.position.x
 	
 	tween_rotation($CanvasLayer/bat/sprite/wing1, 7, 0.2)
@@ -178,6 +193,7 @@ func _on_bat_colours_buy_pressed(index):
 		#print(index)
 		cur_index = index
 		$CanvasLayer/shop/confirm.visible = 1
+		#set_style(index)
 	else:
 		print("poor")
 
@@ -185,6 +201,7 @@ func _on_trail_colours_buy_pressed(index):
 	if global.coins >= prices[1][index]:
 		cur_index = index
 		$CanvasLayer/shop/confirm.visible = 1
+		#set_trail(index)
 	else:
 		print("poor")
 
@@ -263,6 +280,8 @@ func _on_center_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 		var tween = create_tween().set_parallel()
 		tween.tween_property($CanvasLayer/bat, "scale", Vector2(32,32), 0.5)
 		tween.tween_property($CanvasLayer/fade, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
+		await get_tree().create_timer(0.5).timeout
+		get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func _on_center_mouse_entered() -> void:
 	$CanvasLayer/bat/sprite/body.modulate = Color(1.4,1.4,1.4,1.0)
@@ -295,9 +314,15 @@ func _on_confirm_pressed() -> void:
 		0:
 			$CanvasLayer/shop/shop/bat_colours/content.get_child(cur_index).get_node("locked").visible = 0
 			$CanvasLayer/shop/shop/bat_colours/content.get_child(cur_index).get_node("button").disabled = 0
+			$CanvasLayer/shop/shop/bat_colours/content.get_child(cur_index).get_node("button").button_pressed = 1
+			#set_style(cur_index)
+			
 		1:
 			$CanvasLayer/shop/shop/trail_colours/content.get_child(cur_index).get_node("locked").visible = 0
 			$CanvasLayer/shop/shop/trail_colours/content.get_child(cur_index).get_node("button").disabled = 0
+			$CanvasLayer/shop/shop/trail_colours/content.get_child(cur_index).get_node("button").button_pressed = 1
+			
+			#set_trail(cur_index)
 	
 	global.coins -= prices[shop_index][cur_index]
 	update_coins()
