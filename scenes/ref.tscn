@@ -15,6 +15,9 @@ size = Vector2(48, 198)
 a = Vector2(30, 0)
 b = Vector2(30, 600)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jhjc"]
+size = Vector2(50, 12)
+
 [node name="ref" type="Area2D" unique_id=665143006]
 script = ExtResource("1_m27a1")
 
@@ -38,8 +41,15 @@ debug_color = Color(0.82, 0.2542, 0.31077996, 0.31764707)
 [node name="pnt" type="Area2D" parent="." unique_id=1185166913]
 
 [node name="pnt" type="CollisionShape2D" parent="pnt" unique_id=1388855134]
-position = Vector2(-7, -298)
+position = Vector2(40, -298)
 shape = SubResource("SegmentShape2D_vlew8")
+
+[node name="phew" type="Area2D" parent="." unique_id=1146841578]
+position = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="phew" unique_id=1043885421]
+shape = SubResource("RectangleShape2D_8jhjc")
 
 [connection signal="body_entered" from="." to="." method="_on_ref_body_entered"]
 [connection signal="body_entered" from="pnt" to="." method="_on_pnt_body_entered"]
+[connection signal="body_entered" from="phew" to="." method="_on_phew_body_entered"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Flappy Bat"
-run/main_scene="uid://dbqe4j51fpuqb"
+run/main_scene="uid://3ut4s52gcllo"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

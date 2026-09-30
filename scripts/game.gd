@@ -2,6 +2,11 @@ extends Node2D
 
 
 func _ready() -> void:
+	
+	
+	
+	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
 	#$CanvasLayer/restart.position.x += 230
 	$CanvasLayer/restart.scale = Vector2(0.1,0.1)
 	
@@ -10,6 +15,9 @@ func _ready() -> void:
 	start_game()
 
 func start_game():
+	global.phew = 0 
+	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 	$CanvasLayer/red.modulate = Color(0.0, 0.0, 0.0, 1.0)
 	
 	game_running = 1
@@ -55,7 +63,7 @@ var y2 = 124
 # 150/150/148 -75
 
 func spawn_obstacle():
-	print("spawned")
+	#print("spawned")
 	var temp_size = randi_range(100,460-gap)
 	#var temp_size = 460-gap
 	
@@ -73,6 +81,9 @@ func spawn_obstacle():
 	temp.get_node("panel").size.y = temp_size
 	temp.get_node("col").shape.size.y = temp_size
 	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
+	temp.get_node("phew").position.y = temp_size/2
+	
+	
 	
 	$map/obstacles.add_child(temp)
 	
@@ -91,6 +102,9 @@ func spawn_obstacle():
 	temp.get_node("panel").position.y = -100 + (200-temp_size)/2 
 	temp.get_node("col").shape.size.y = temp_size
 	temp.get_node("ref").get_node("col").shape.size.y = temp_size-2
+	temp.get_node("pnt").get_child(0).set_deferred("disabled", 1)
+	temp.get_node("phew").position.y = -temp_size/2
+	
 	
 	spawn_coins()
 	spawn_coins()
@@ -118,6 +132,8 @@ func _on_boundaries_body_entered(body: Node2D) -> void:
 		kill()
 
 func kill():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	game_running = 0
 	$player.game_running =0
 
@@ -154,9 +170,15 @@ var points = 0
 var coins = 0
 
 func add_point():
-	global.highest_score = max(global.highest_score, points/2)
+	if global.phew: 
+		print("phew")
+		for i in range(10):
+			add_coin()
+	global.phew = 0
+	
+	global.highest_score = max(global.highest_score, points)
 	points += 1
-	$CanvasLayer/points.text = "Distance: " + str(points/2) + "m"
+	$CanvasLayer/points.text = "Distance: " + str(points) + "m"
 	print(points)
 	#print("points")
 func add_coin():

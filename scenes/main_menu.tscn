@@ -426,7 +426,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
 
 [node name="shop" type="Node2D" parent="CanvasLayer" unique_id=493377670]
-visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer/shop" unique_id=89901482]
 visible = false

@@ -64,6 +64,10 @@ func set_trail(num):
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	$CanvasLayer/shop.visible = 0
+	$CanvasLayer/shop/shop/bat_colours.visible = 0
+	$CanvasLayer/shop/shop/trail_colours.visible = 0
+	$CanvasLayer/shop/shop/titles/bat_colours.button_pressed = 1
 	
 	update_coins()
 	
@@ -81,8 +85,6 @@ func _ready() -> void:
 		var temp = $CanvasLayer/shop/shop/trail_colours/content/Control.duplicate()
 		temp.get_node("locked").get_node("price").text = str(prices[1][i+1]) + "$"
 		$CanvasLayer/shop/shop/trail_colours/content.add_child(temp)
-	
-	
 	
 	$CanvasLayer/shop/shop/bat_colours/content/Control/button.button_pressed = 1
 	$CanvasLayer/shop/shop/bat_colours/content/Control/button.disabled  = 0
@@ -138,30 +140,30 @@ func _ready() -> void:
 	
 	
 	
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	#
-	#var tween = create_tween().set_parallel()
-	#tween.tween_property($CanvasLayer/bat/sprite/wing2, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#label.text = "Settings"
-	#tween.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#await get_tree().create_timer(2).timeout
-	#var tween2 = create_tween().set_parallel()
-	#tween2.tween_property($CanvasLayer/bat/sprite/wing2, "modulate", Color(1, 1, 1, 1.0), 0.5)
-	#label.text = "Play"
-	#tween2.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#tween2.tween_property($CanvasLayer/bat/sprite/body, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#await get_tree().create_timer(2).timeout
-	#var tween4 = create_tween().set_parallel()
-	#tween4.tween_property($CanvasLayer/bat/sprite/body, "modulate", Color(1, 1, 1, 1.0), 0.5)
-	#label.text = "Shop"
-	#tween4.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#tween4.tween_property($CanvasLayer/bat/sprite/wing1, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
-	#await get_tree().create_timer(2).timeout
-	#var tween5 = create_tween().set_parallel()
-	#tween5.tween_property($CanvasLayer/bat/sprite/wing1, "modulate", Color(1, 1, 1, 1.0), 0.5)
-	#tween5.tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
-	#
-	#await get_tree().create_timer(1).timeout
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	var tween = create_tween().set_parallel()
+	tween.tween_property($CanvasLayer/bat/sprite/wing2, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	label.text = "Settings"
+	tween.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	await get_tree().create_timer(2).timeout
+	var tween2 = create_tween().set_parallel()
+	tween2.tween_property($CanvasLayer/bat/sprite/wing2, "modulate", Color(1, 1, 1, 1.0), 0.5)
+	label.text = "Play"
+	tween2.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	tween2.tween_property($CanvasLayer/bat/sprite/body, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	await get_tree().create_timer(2).timeout
+	var tween4 = create_tween().set_parallel()
+	tween4.tween_property($CanvasLayer/bat/sprite/body, "modulate", Color(1, 1, 1, 1.0), 0.5)
+	label.text = "Shop"
+	tween4.tween_property(label, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	tween4.tween_property($CanvasLayer/bat/sprite/wing1, "modulate", Color(1.6, 1.6, 1.6, 1.0), 0.5)
+	await get_tree().create_timer(2).timeout
+	var tween5 = create_tween().set_parallel()
+	tween5.tween_property($CanvasLayer/bat/sprite/wing1, "modulate", Color(1, 1, 1, 1.0), 0.5)
+	tween5.tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
+	
+	await get_tree().create_timer(1).timeout
 	stop_clicks = 0
 	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
